@@ -8,6 +8,13 @@ from dotenv import load_dotenv
 
 
 def process_test_img(chess_board_image):
+    """
+Given a random image of chess board, it will generate images for making prediction
+
+    :param img: image of chess board
+    :return: preprocessed image for making prediction and copy of original image
+    """
+
     if os.getenv('ROOT') is None:
         load_dotenv()
 
@@ -23,17 +30,14 @@ def process_test_img(chess_board_image):
 
     return processed_test_img
 
-#
-# def preprocess_img(X):
-#     if os.getenv('ROOT') is None:
-#         load_dotenv()
-#     # temp=[]
-#     # for i in X:
-#     img  =cv2.resize(X, (200, 200))
-#     temp = split_chess_board(img)
-#     return temp
 
 def split_chess_board(board):
+    """
+This method takes a chess board image as input and generate 64 images (8X8 chess board = 64 sub images)
+    :param board: Image of chess board
+    :return: 64 images reshaped into 25X25X3 shape
+    """
+
     img = cv2.resize(board, (200, 200))
     temp = []
     for x in range(0,8):
