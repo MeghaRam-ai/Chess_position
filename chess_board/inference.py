@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 
 def load_model():
     file_name = os.getenv('ROOT') + '/models/pipeline_model.pkl'
-    # file_name = 'models/pipeline_model.pkl'
     loaded_model = joblib.load(file_name)
     return loaded_model
 
@@ -20,6 +19,12 @@ def load_encoder():
 
 
 def decode_fen(prediction):
+    """
+It will recreate the FEN label from predicted label
+    :param prediction: predicted label in encoded format
+    :return: FEN string
+    """
+
     predicted_fen = []
     for i in prediction:
         le = load_encoder()
